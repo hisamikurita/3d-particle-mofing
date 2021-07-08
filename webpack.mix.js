@@ -10,6 +10,14 @@ require('laravel-mix-imagemin')
 require('laravel-mix-webp')
 require('laravel-mix-ejs')
 
+let HOME_URL = null;
+if (process.env.NODE_ENV === 'production') {
+  HOME_URL = ''
+} else {
+  HOME_URL = 'http://localhost:3000'
+}
+
+
 const srcRelativePath =
   (process.env.MIX_SRC_RELATIVE_PATH || 'resources')
     .replace(/\/$/, '')
@@ -91,7 +99,7 @@ mix
     ],
     https:
       process.env.MIX_BROWSER_SYNC_HTTPS_CERT &&
-      process.env.MIX_BROWSER_SYNC_HTTPS_KEY
+        process.env.MIX_BROWSER_SYNC_HTTPS_KEY
         ? {
           cert: process.env.MIX_BROWSER_SYNC_HTTPS_CERT,
           key: process.env.MIX_BROWSER_SYNC_HTTPS_KEY
@@ -110,7 +118,11 @@ mix
       svgSprite: (filePath = '', id = '') =>
         process.env.NODE_ENV === 'production'
           ? id
-          : basePath + filePath + id
+          : basePath + filePath + id,
+
+      URL: {
+        HOME: HOME_URL,
+      },
     },
     {
       base: `${srcRelativePath}/views`,
@@ -122,13 +134,13 @@ mix
 if (process.env.NODE_ENV === 'production') {
   mix
     .imagemin(
-      [ 'assets/images/**/*' ],
+      ['assets/images/**/*'],
       { context: srcRelativePath },
       {
-        test: filePath => !!multimatch(filePath, [ 'assets/images/**/*' ]).length,
-        pngquant: { strip: true, quality: 100-100 }, // 0 ~ 100
+        test: filePath => !!multimatch(filePath, ['assets/images/**/*']).length,
+        pngquant: { strip: true, quality: 100 - 100 }, // 0 ~ 100
         gifsicle: { optimizationLevel: 1 }, // 1 ~ 3
-        plugins: [ require('imagemin-mozjpeg')({ quality: 100 }) ] // 0 ~ 100
+        plugins: [require('imagemin-mozjpeg')({ quality: 100 })] // 0 ~ 100
       }
     )
     .ImageWebp({
