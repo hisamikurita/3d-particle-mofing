@@ -40,7 +40,13 @@
     "stylelint-scss": "^3.18.0",
     "stylelint-webpack-plugin": "^1.2.3",
     "svg-spritemap-webpack-plugin": "^3.8.1",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "dat.gui": "^0.7.7",
+    "glslify-loader": "^2.0.0",
+    "gsap": "^3.6.1",
+    "raw-loader": "^4.0.2",
+    "three": "^0.129.0",
+    "three-orbitcontrols": "^2.110.3"
   },
   "repository": {
     "type": "git"
@@ -50,12 +56,4 @@
     "npm": ">=6.4.1"
   },
   "engineStrict": true,
-  "dependencies": {
-    "dat.gui": "^0.7.7",
-    "glslify-loader": "^2.0.0",
-    "gsap": "^3.6.1",
-    "raw-loader": "^4.0.2",
-    "three": "^0.129.0",
-    "three-orbitcontrols": "^2.110.3"
-  }
 }
