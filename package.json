@@ -2,7 +2,7 @@
   "name": "laravel-mix-boilerplate-static",
   "version": "1.0.2",
   "description": "Boilerplate for Static site, based on Laravel Mix",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
     "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
