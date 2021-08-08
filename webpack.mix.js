@@ -34,10 +34,6 @@ mix
   .setPublicPath(distRelativePath)
   .polyfill()
   .js(
-    `${srcRelativePath}/assets/js/lib.js`,
-    `${distRelativePath}/assets/js`
-  )
-  .js(
     `${srcRelativePath}/assets/js/app.js`,
     `${distRelativePath}/assets/js`
   )
