@@ -1,3 +1,4 @@
+import { gsap } from 'gsap';
 import Particle from './particle';
 import ParticleStage from './particle-stage';
 
