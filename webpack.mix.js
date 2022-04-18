@@ -12,7 +12,7 @@ require('laravel-mix-ejs')
 
 let HOME_URL = null;
 if (process.env.NODE_ENV === 'production') {
-  HOME_URL = ''
+  HOME_URL = 'https://hisamikurita.github.io/3d-particle-mofing/public'
 } else {
   HOME_URL = 'http://localhost:3000'
 }
