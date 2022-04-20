@@ -21,6 +21,7 @@ const _raf = () => {
 };
 
 gsap.ticker.add(_raf);
+gsap.ticker.fps(60);
 
 window.addEventListener('load', () => {
   particle.onOpenning();
