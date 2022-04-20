@@ -1,15 +1,1 @@
-.svg-sprite {
-  display: none;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-#webgl {
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-}
-/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiL2Fzc2V0cy9jc3MvYXBwLmNzcyIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9hc3NldHMvY3NzL2FwcC5zY3NzIl0sInNvdXJjZXNDb250ZW50IjpbIi5zdmctc3ByaXRlIHtcbiAgZGlzcGxheTogbm9uZTtcbn1cblxuKntcbiAgbWFyZ2luOiAwO1xuICBwYWRkaW5nOiAwO1xufVxuXG4jd2ViZ2wge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiAxMDAlO1xuICB6LWluZGV4OiAxO1xufSJdLCJtYXBwaW5ncyI6IkFBQUE7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQTtBQUNBO0FBQ0E7QUFDQSIsInNvdXJjZVJvb3QiOiIifQ==*/
+.svg-sprite{display:none}*{margin:0;padding:0}#webgl{width:100%;height:100%;z-index:1}
