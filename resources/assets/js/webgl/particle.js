@@ -48,15 +48,10 @@ export default class Particle {
     }
 
     this.isAnimation = false;
-
-    this.composer = new EffectComposer(this.stage.renderer);
-    this.UnrealBloomPass = new UnrealBloomPass(new THREE.Vector2(this.stage.width, this.stage.height), 0.0, 1.4, 0.0);
-    this.composer.renderToScreen = true;
-    this.composer.addPass(new RenderPass(this.stage.scene, this.stage.camera));
-    this.composer.addPass(this.UnrealBloomPass);
   }
 
   init() {
+    this._setPostEffect();
     this._setMesh();
     this._setGui();
   }
@@ -158,6 +153,14 @@ export default class Particle {
     this.stage.scene.add(this.group);
   }
 
+  _setPostEffect(){
+    this.composer = new EffectComposer(this.stage.renderer);
+    this.UnrealBloomPass = new UnrealBloomPass(new THREE.Vector2(this.stage.width, this.stage.height), 0.0, 1.4, 0.0);
+    this.composer.renderToScreen = true;
+    this.composer.addPass(new RenderPass(this.stage.scene, this.stage.camera));
+    this.composer.addPass(this.UnrealBloomPass);
+  }
+
   _setBloom() {
     gsap.to(this.UnrealBloomPass, {
       duration: this.duration / 2.0,
@@ -184,13 +187,6 @@ export default class Particle {
         value: 0.0
       })
     });
-  }
-
-  _disable() {
-    this.isAnimation = true;
-    setTimeout(() => {
-      this.isAnimation = false;
-    }, this.duration * 1000);
   }
 
   _setLoop(number) {
@@ -294,7 +290,6 @@ export default class Particle {
       particleMoveSpeed: this.particleMoveSpeed,
       particleRange: this.particleRange,
       particleAnimationRange: this.particleAnimationRange,
-      rotation: this.rotationPower,
       maxOffsetRatioValue: this.maxOffsetRatioValue,
       minDurationRatioValue: this.minDurationRatioValue,
       bloomStrength: this.bloom.strengh,
@@ -351,11 +346,6 @@ export default class Particle {
       .onChange((value) => {
         this.particleMoveSpeed = value;
       });
-    gui.add(parameter, "rotation", -0.02, 0.02, 0.001)
-      .name("rotationPower")
-      .onChange((value) => {
-        this.rotationPower = value;
-      });
     gui.add(parameter, "maxOffsetRatioValue", 0.0, 1.0, 0.01)
       .name("maxOffsetRatioValue")
       .onChange((value) => {
@@ -402,6 +392,13 @@ export default class Particle {
         this.stage.renderer.setClearColor(new THREE.Color(value));
       });
     gui.close();
+  }
+
+  _disable() {
+    this.isAnimation = true;
+    setTimeout(() => {
+      this.isAnimation = false;
+    }, this.duration * 1000);
   }
 
   _render(number) {

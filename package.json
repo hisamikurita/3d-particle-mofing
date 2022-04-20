@@ -55,5 +55,8 @@
     "node": "14.15.2",
     "npm": ">=6.4.1"
   },
-  "engineStrict": true
+  "engineStrict": true,
+  "dependencies": {
+    "eventemitter3": "^4.0.7"
+  }
 }
