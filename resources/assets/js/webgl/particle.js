@@ -397,6 +397,8 @@ export default class Particle {
         this.stage.renderer.setClearColor(new THREE.Color(value));
       });
     gui.close();
+    // 公開ページでは調整用のパネルを出さない(調整したい時はこの行を消す)
+    gui.hide();
   }
 
   _disable() {
