@@ -7,6 +7,12 @@
   padding: 0;
 }
 
+body {
+  // WebGL のクリアカラー(particle-stage.js の clearColor: 0x010216)と揃え、
+  // canvas の描画が始まる前やサイズが変わる瞬間に白い背景が見えないようにする
+  background-color: #010216;
+}
+
 #webgl {
   width: 100%;
   height: 100%;
