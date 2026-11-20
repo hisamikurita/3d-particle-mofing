@@ -48,6 +48,11 @@ export default class Particle {
     }
 
     this.isAnimation = false;
+
+    // 色を変える時間。ブルームで全体が白くなる前半(duration / 2)の間に変わりきらせ、
+    // ブルームが引いて粒が集まる後半には、次の色だけが少しずつ見えてくるようにする
+    // (全体の時間で変えると、後半に色味と鮮やかさが同時に変わって、色がぱきっと変わったように見える)
+    this.colorDuration = this.duration / 2.0;
   }
 
   init() {
@@ -212,12 +217,12 @@ export default class Particle {
           value: 0.0
         });
         gsap.to(this.currentColor, {
-          duration: this.duration,
+          duration: this.colorDuration,
           ease: 'power2.inOut',
           value: this.colorPallet.x,
         });
         gsap.to(this.fogCurrentColor, {
-          duration: this.duration,
+          duration: this.colorDuration,
           ease: 'power2.inOut',
           value: this.fogColorPallet.x,
         });
@@ -239,12 +244,12 @@ export default class Particle {
           value: 0.0
         });
         gsap.to(this.currentColor, {
-          duration: this.duration,
+          duration: this.colorDuration,
           ease: 'power2.inOut',
           value: this.colorPallet.y,
         });
         gsap.to(this.fogCurrentColor, {
-          duration: this.duration,
+          duration: this.colorDuration,
           ease: 'power2.inOut',
           value: this.fogColorPallet.y,
         });
@@ -266,12 +271,12 @@ export default class Particle {
           value: 1.0
         });
         gsap.to(this.currentColor, {
-          duration: this.duration,
+          duration: this.colorDuration,
           ease: 'power2.inOut',
           value: this.colorPallet.z,
         });
         gsap.to(this.fogCurrentColor, {
-          duration: this.duration,
+          duration: this.colorDuration,
           ease: 'power2.inOut',
           value: this.fogColorPallet.z,
         });
@@ -396,9 +401,13 @@ export default class Particle {
 
   _disable() {
     this.isAnimation = true;
-    setTimeout(() => {
+    // setTimeoutはブラウザの時計で進むが、色や形のアニメーションはGSAPの時計で進む。
+    // タブを裏に回すとGSAPだけが止まり、戻った時にはアニメーションの途中なのに「終わった」扱いになって、
+    // _renderが最後の色を直接入れてしまい、色が一気に変わっていた。GSAPの時計で数えて揃える
+    if (this.disableCall) this.disableCall.kill();
+    this.disableCall = gsap.delayedCall(this.duration, () => {
       this.isAnimation = false;
-    }, this.duration * 1000);
+    });
   }
 
   _render(number) {
